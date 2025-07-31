@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ANTI CORRUPTION FOUNDATION OF WORLD</title>
+	<!-- favicons Icons -->
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/image/logo.png" />
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/image/logo.png" />
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/image/logo.png" />
+	<link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+	<meta name="description" content=" " />
+
+	<!-- fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&amp;display=swap"
+		rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&amp;display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Castoro&amp;display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Schoolbell&amp;display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="/assets/vendors/bootstrap/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/bootstrap-select/bootstrap-select.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/animate/animate.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/fontawesome/css/all.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/jquery-ui/jquery-ui.css" />
+	<link rel="stylesheet" href="/assets/vendors/jarallax/jarallax.css" />
+	<link rel="stylesheet" href="/assets/vendors/jquery-magnific-popup/jquery.magnific-popup.css" />
+	<link rel="stylesheet" href="/assets/vendors/nouislider/nouislider.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/nouislider/nouislider.pips.css" />
+	<link rel="stylesheet" href="/assets/vendors/tiny-slider/tiny-slider.css" />
+	<link rel="stylesheet" href="/assets/vendors/cleenhearts-icons/style.css" />
+	<link rel="stylesheet" href="/assets/vendors/swiper/css/swiper-bundle.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/owl-carousel/css/owl.carousel.min.css" />
+	<link rel="stylesheet" href="/assets/vendors/owl-carousel/css/owl.theme.default.min.css" />
+
+	<!-- template styles -->
+	<link rel="stylesheet" href="/assets/css/cleenhearts.css" />
+</head>
+{{>header}}
+
+<body>
+	<section class="page-header @@extraClassName">
+		<div class="page-header__bg" style="background-image: url('assets/images/backgrounds/page-header-bg-1-1.jpg');">
+		</div>
+
+		<div class="container">
+			<h2 class="page-header__title">Membership Form</h2>
+			<ul class="cleenhearts-breadcrumb list-unstyled">
+				<li><i class="icon-home"></i> <a href="/">Home</a></li>
+				<li><span>Membership Form</span></li>
+			</ul>
+		</div>
+	</section>
+	<section class="become-volunteer section-space py-5">
+		<div class="container">
+			<div class="row justify-content-center ">
+				<div class="col-lg-12">
+					<form action="dd" class="become-volunteer__form form-one p-4 rounded-4 shadow-lg bg-white">
+						<h3 class="text-center mb-4">Membership Form</h3>
+
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label for="name" class="form-label">Name</label>
+								<input type="text" id="name" name="name" placeholder="Enter your Name"
+									class="form-control">
+							</div>
+
+							<div class="col-md-6">
+								<label for="father_spouse_name" class="form-label">Father's/Spouse's Name</label>
+								<input type="text" id="father_spouse_name" name="father_spouse_name"
+									placeholder="Father's/Spouse's Name" class="form-control">
+							</div>
+
+							<div class="col-md-6">
+								<label for="gender" class="form-label">Gender</label>
+								<select name="gender" id="gender" class="form-control">
+									<option value="" disabled selected>Select Gender</option>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+									<option value="other">Other</option>
+								</select>
+							</div>
+
+							<div class="col-md-6">
+								<label for="dob" class="form-label">Date of Birth</label>
+								<input type="date" id="dob" name="dob" class="form-control">
+							</div>
+
+							<div class="col-md-6">
+								<label for="email" class="form-label">Email Address</label>
+								<input type="email" id="email" name="email" placeholder="Email Address"
+									class="form-control">
+							</div>
+
+							<div class="col-md-6">
+								<label for="mobile" class="form-label">Mobile No.</label>
+								<input type="tel" id="mobile" name="mobile" placeholder="Mobile No."
+									class="form-control">
+							</div>
+							<div class="col-md-6">
+								<label for="aadhar" class="form-label">Aadhar No.</label>
+								<input type="text" id="aadhar" name="aadhar" placeholder="Enter 12-digit Aadhar No."
+									class="form-control" maxlength="12" pattern="\d{12}" required>
+							</div>
+							<div class="col-md-6">
+								<label for="image" class="form-label">Upload Adhar</label>
+								<input type="file" id="image" name="image" class="form-control">
+							</div>
+							<div class="col-md-6">
+								<label for="gender" class="form-label">Membership Type</label>
+								<select name="member" id="member" class="form-control">
+									<option value="" disabled selected>Select Type</option>
+									<option value="male">National</option>
+									<option value="female">State</option>
+									<option value="other">Dist</option>
+									<option value="other">Block</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label for="amount" class="form-label">Amount</label>
+								<input type="number" id="amount" name="amount" placeholder="Enter amount"
+									class="form-control" min="0" step="0.01" required>
+							</div>
+
+							<div class="col-md-12">
+								<label for="address" class="form-label">Address</label>
+								<textarea id="address" name="address" placeholder="Address" class="form-control"
+									rows="2"></textarea>
+							</div>
+							<div class="col-md-12 text-center pt-3">
+								<button type="submit" class="btn btn-primary px-5 py-2 rounded-pill">Submit</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<style>
+		form .form-control {
+			border-radius: 8px;
+			border: 1px solid #ccc;
+			transition: border-color 0.3s ease, box-shadow 0.3s ease;
+		}
+
+		form .form-control:focus {
+			border-color: #0d6efd;
+			box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+		}
+
+		form .form-label {
+			font-weight: 600;
+			margin-bottom: 4px;
+		}
+	</style>
+
+
+
+	<script src="/assets/vendors/jquery/jquery-3.7.0.min.js"></script>
+	<script src="/assets/vendors/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="/assets/vendors/bootstrap-select/bootstrap-select.min.js"></script>
+	<script src="/assets/vendors/jarallax/jarallax.min.js"></script>
+	<script src="/assets/v/endors/jquery-ui/jquery-ui.js"></script>
+	<script src="/assets/vendors/jquery-ajaxchimp/jquery.ajaxchimp.min.js"></script>
+	<script src="/assets/vendors/jquery-appear/jquery.appear.min.js"></script>
+	<script src="/assets/vendors/jquery-circle-progress/jquery.circle-progress.min.js"></script>
+	<script src="/assets/vendors/jquery-magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="/assets/vendors/jquery-validate/jquery.validate.min.js"></script>
+	<script src="/assets/vendors/nouislider/nouislider.min.js"></script>
+	<script src="/assets/vendors/tiny-slider/tiny-slider.js"></script>
+	<script src="/assets/vendors/wnumb/wNumb.min.js"></script>
+	<script src="/assets/vendors/swiper/js/swiper-bundle.min.js"></script>
+	<script src="/assets/vendors/owl-carousel/js/owl.carousel.min.js"></script>
+	<script src="/assets/vendors/wow/wow.js"></script>
+	<script src="/assets/vendors/imagesloaded/imagesloaded.min.js"></script>
+	<script src="/assets/vendors/isotope/isotope.js"></script>
+	<script src="/assets/vendors/countdown/countdown.min.js"></script>
+	<script src="/assets/vendors/jquery-circleType/jquery.circleType.js"></script>
+	<script src="/assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
+	<!-- template js -->
+	<script src="/assets/js/cleenhearts.js"></script>
+</body>
+{{>footer}}
+
+</html>
