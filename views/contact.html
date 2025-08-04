@@ -41,11 +41,9 @@
 
 <body>
 
-
     <section class="page-header @@extraClassName">
-        <div class="page-header__bg" style="background-image: url('assets/images/backgrounds/page-header-bg-1-1.jpg');">
+        <div class="page-header__bg" style="background-image: url('/assets/images/banner/aboutbanner1.png');">
         </div>
-
         <div class="container">
             <h2 class="page-header__title">Contact Us</h2>
             <ul class="cleenhearts-breadcrumb list-unstyled">
@@ -54,6 +52,17 @@
             </ul>
         </div>
     </section>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const status = urlParams.get('status');
+
+  if (status === 'success') {
+    alert("✅ Message sent successfully!");
+  } else if (status === 'error') {
+    alert("❌ Something went wrong. Please try again.");
+  }
+</script>
+
 
     <section class="contact-one section-space @@extraClassName py-5">
         <div class="container">
@@ -66,36 +75,36 @@
                             style="background-image: url('assets/images/backgrounds/contact-bg-1-1.png');"></div>
 
                         <h2 class="contact-one__title">Leave us a Message</h2>
+                        <div class="contact-one__form__inner contact-form-validated form-one wow fadeInUp" data-wow-duration="1500ms">
+                        <form action="/submit-form" method="POST">
 
-                        <form class="contact-one__form__inner contact-form-validated form-one wow fadeInUp"
-                            data-wow-duration="1500ms" action="">
                             <div class="row gutter-y-20">
 
                                 <div class="col-6">
                                     <div class="form-one__control">
                                         <input type="text" name="name" id="name" placeholder="Enter your name"
-                                            class="form-one__control__input">
+                                            class="form-one__control__input" required>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-one__control">
                                         <input type="text" name="email" id="email" placeholder="Your email"
-                                            class="form-one__control__input">
+                                            class="form-one__control__input" required>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-one__control">
                                         <input type="tel" name="phone" id="phone" placeholder="Phone no"
-                                            class="form-one__control__input">
+                                            class="form-one__control__input" required>
                                     </div>
                                 </div>
 
                                 <div class="col-6">
                                     <div class="form-one__control">
                                         <input type="text" name="subject" id="name" placeholder="Enter your subject"
-                                            class="form-one__control__input">
+                                            class="form-one__control__input" required>
                                     </div>
                                 </div>
 
@@ -103,7 +112,7 @@
                                     <div class="form-one__control">
                                         <textarea name="message" id="message" cols="30" rows="10"
                                             placeholder="Write message..."
-                                            class="form-one__control__input form-one__control__message"></textarea>
+                                            class="form-one__control__input form-one__control__message" required></textarea>
                                     </div>
                                 </div>
 
@@ -122,6 +131,7 @@
 
                             </div>
                         </form>
+                        </div>
                     </div>
                 </div>
 

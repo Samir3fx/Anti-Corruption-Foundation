@@ -49,7 +49,7 @@
 
 <body>
 	<section class="page-header @@extraClassName">
-		<div class="page-header__bg" style="background-image: url('assets/images/backgrounds/page-header-bg-1-1.jpg');">
+		<div class="page-header__bg" style="background-image: url('/assets/images/banner/membershipform.png');">
 		</div>
 
 		<div class="container">
@@ -60,11 +60,15 @@
 			</ul>
 		</div>
 	</section>
+	<div id="enrollmentMessage" class="text-center"></div>
+
+
 	<section class="become-volunteer section-space py-5">
 		<div class="container">
 			<div class="row justify-content-center ">
 				<div class="col-lg-12">
-					<form action="dd" class="become-volunteer__form form-one p-4 rounded-4 shadow-lg bg-white">
+					<div class="become-volunteer__form form-one p-4 rounded-4 shadow-lg bg-white">
+					<form action="/submit-membership" method="POST" enctype="multipart/form-data">
 						<h3 class="text-center mb-4">Membership Form</h3>
 
 						<div class="row g-3">
@@ -79,7 +83,6 @@
 								<input type="text" id="father_spouse_name" name="father_spouse_name"
 									placeholder="Father's/Spouse's Name" class="form-control">
 							</div>
-
 							<div class="col-md-6">
 								<label for="gender" class="form-label">Gender</label>
 								<select name="gender" id="gender" class="form-control">
@@ -89,18 +92,15 @@
 									<option value="other">Other</option>
 								</select>
 							</div>
-
 							<div class="col-md-6">
 								<label for="dob" class="form-label">Date of Birth</label>
 								<input type="date" id="dob" name="dob" class="form-control">
 							</div>
-
 							<div class="col-md-6">
 								<label for="email" class="form-label">Email Address</label>
 								<input type="email" id="email" name="email" placeholder="Email Address"
 									class="form-control">
 							</div>
-
 							<div class="col-md-6">
 								<label for="mobile" class="form-label">Mobile No.</label>
 								<input type="tel" id="mobile" name="mobile" placeholder="Mobile No."
@@ -119,10 +119,10 @@
 								<label for="gender" class="form-label">Membership Type</label>
 								<select name="member" id="member" class="form-control">
 									<option value="" disabled selected>Select Type</option>
-									<option value="male">National</option>
-									<option value="female">State</option>
-									<option value="other">Dist</option>
-									<option value="other">Block</option>
+									<option value="National">National</option>
+									<option value="State">State</option>
+									<option value="Dist">Dist</option>
+									<option value="Block">Block</option>
 								</select>
 							</div>
 							<div class="col-md-6">
@@ -141,12 +141,11 @@
 							</div>
 						</div>
 					</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-
 	<style>
 		form .form-control {
 			border-radius: 8px;
@@ -164,7 +163,21 @@
 			margin-bottom: 4px;
 		}
 	</style>
+	<script>
+  // Get query parameter from URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const enrollmentNo = urlParams.get('enrollmentNo');
 
+  if (enrollmentNo) {
+    const messageDiv = document.getElementById('enrollmentMessage');
+    messageDiv.innerHTML = `
+      <div style="background-color:#e0ffe0; padding:10px; border:1px solid green; margin-top:10px;">
+        <strong>Member Submitted Successfully!</strong><br>
+        Your Enrollment Number is: <strong>${enrollmentNo}</strong>
+      </div>
+    `;
+  }
+</script>
 
 
 	<script src="/assets/vendors/jquery/jquery-3.7.0.min.js"></script>
@@ -188,9 +201,7 @@
 	<script src="/assets/vendors/countdown/countdown.min.js"></script>
 	<script src="/assets/vendors/jquery-circleType/jquery.circleType.js"></script>
 	<script src="/assets/vendors/jquery-lettering/jquery.lettering.min.js"></script>
-	<!-- template js -->
 	<script src="/assets/js/cleenhearts.js"></script>
 </body>
 {{>footer}}
-
 </html>
