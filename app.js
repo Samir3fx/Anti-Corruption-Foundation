@@ -5,6 +5,20 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const app = express();
 const multer = require('multer');
+const session = require('express-session');
+const User = require('./models/User');
+app.use(session({
+  secret: 'yourSecretKey',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } // secure: true only for https
+}));
+
+
+hbs.registerHelper('contains', function (str, substring) {
+  if (typeof str !== 'string') return false;
+  return str.includes(substring);
+});
 //models
 const Contact = require('./models/ContactModel');
 const Complaint = require('./models/ComplaintModel');
@@ -44,9 +58,11 @@ const upload = multer({ storage });
 
 
 // Routes
-app.get('/', (req, res) => {
-  res.render('index');  
+app.get('/', async (req, res) => {
+  const newsData = await News.find().sort({ createdAt: -1 });
+  res.render('index', { newsData });
 });
+
 app.get('/about',(req,res)=>{
     res.render('about')
 });
@@ -56,33 +72,78 @@ app.get('/about_director',(req,res)=>{
 app.get('/service',(req,res)=>{
     res.render('service')
 });
-app.get('/gallery',(req,res)=>{
-    res.render('gallery')
+
+app.get('/gallery', async (req, res) => {
+  const galleryfront = await Gallery.find().sort({ createdAt: -1 });
+  res.render('gallery', { galleryfront });
 });
-app.get('/News&Event',(req,res)=>{
-    res.render('News&Event')
+
+app.get('/News&Event', async (req, res) => {
+  const newsData = await News.find().sort({ createdAt: -1 });
+  res.render('News&Event', { newsData });
 });
+
 app.get('/Online_Membership',(req,res)=>{
     res.render('Online_Membership')
 });
-app.get('/National_List',(req,res)=>{
-    res.render('National_List')
+
+app.get('/National_List', async (req, res) => {
+  try {
+    const frontnationalList = await Membership.find({ member: 'National' }).sort({ createdAt: -1 });
+    res.render('National_List', { frontnationalList });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
-app.get('/State_List',(req,res)=>{
-    res.render('State_List')
+app.get('/State_List', async (req,res)=>{
+  try{
+    const stateList = await Membership.find({member:'State'}).sort({createdAt:-1});
+    res.render('State_List',{stateList});
+  }
+  catch(err){
+    console.error(err);
+    res.status(500).send('server error');
+  }
 });
-app.get('/dist_list',(req,res)=>{
-    res.render('dist_list')
+// Show All Memberships where member is "Dist"
+app.get('/dist_list', async (req, res) => {
+  try {
+    const distList = await Membership.find({ member: 'Dist' }).sort({ createdAt: -1 });
+    res.render('dist_list', { distList });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
-app.get('/Block_List',(req,res)=>{
-    res.render('Block_List')
+
+// Show All Memberships where member is "Block"
+app.get('/Block_List', async (req, res) => {
+  try {
+    const blockList = await Membership.find({ member: 'Block' }).sort({ createdAt: -1 });
+    res.render('Block_List', { blockList });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
+
 app.get('/complain',(req,res)=>{
     res.render('complain')
 });
-app.get('/case_resolved',(req,res)=>{
-    res.render('case_resolved')
+
+
+
+app.get('/case_resolved', async (req, res) => {
+  try {
+    const resolvedCases = await Cashresolved.find().sort({ createdAt: -1 });
+    res.render('case_resolved', { resolvedCases });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+  }
 });
+
 app.get('/legal',(req,res)=>{
     res.render('legal')
 });
@@ -165,9 +226,9 @@ app.post('/submit-membership', upload.single('image'), async (req, res) => {
   }
 });
 
-app.get('/admin/dashboard', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'admin', 'dashboard.html'));
-});
+// app.get('/admin/dashboard', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'views', 'admin', 'dashboard.html'));
+// });
 
 // GET Dashboard
 app.get('/views/admin/Admin_News', async (req, res) => {
@@ -619,4 +680,49 @@ app.post('/update-resolved/:id', upload.single('image'), async (req, res) => {
 app.get('/delete-resolved/:id', async (req, res) => {
   await Cashresolved.findByIdAndDelete(req.params.id);
   res.redirect('/admin/Admin_CaseResolved');
+});
+
+
+
+app.get('/login', (req, res) => {
+ 
+   res.render('login')
+});
+
+//  Login Submit
+app.post('/loginsubmit', async (req, res) => {
+  const { name, password } = req.body;
+
+  try {
+    const user = await User.findOne({ name });
+
+    if (!user || user.password !== password) {
+      return res.send('<script>alert("Invalid credentials"); window.location="/login"</script>');
+    }
+
+    // Set session
+    req.session.userId = user._id;
+    res.send('<script>alert("Login successful!"); window.location="/admin/dashboard"</script>');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/admin/dashboard', (req, res) => {
+  if (!req.session.userId) {
+    return res.redirect('/login');
+  }
+
+  // Prevent caching
+  res.setHeader('Cache-Control', 'no-store');
+
+  res.sendFile(path.join(__dirname, 'views', 'admin', 'dashboard.html'));
+});
+
+
+
+app.get('/logout', (req, res) => {
+  req.session.destroy();
+  res.redirect('/login');
 });

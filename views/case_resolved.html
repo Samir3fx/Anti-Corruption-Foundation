@@ -62,30 +62,44 @@
 
 
 
-        <section class="inspiring-one section-space"
-            style="background-image: url('assets/images/backgrounds/inspiring-bg-1-1.png');">
-            <div class="container">
-                <div class="row gutter-y-50">
-                    <div class="col-xl-6">
-                        <div class="sec-title">
+      
 
-                            <h6 class="sec-title__tagline @@extraClassName">Highlights of Our Successful Resolutions
-                            </h6><!-- /.sec-title__tagline -->
+<div class="blog-one section-space pt-5">
+  <div class="container">
+    <div class="row">
+      {{#each resolvedCases}} 
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 overflow-hidden"
+             style="transition: all 0.3s ease-in-out; cursor: pointer;"
+             onmouseover="this.classList.add('shadow-lg', 'scale-up')"
+             onmouseout="this.classList.remove('shadow-lg', 'scale-up')">
 
-                            <h3 class="sec-title__title">Solved Cases <span class="sec-title__title__inner">By Us</span>
-                            </h3><!-- /.sec-title__title -->
-                        </div><!-- /.sec-title -->
-                        <p class="inspiring-one__text"> </p><!-- /.inspiring-one__text -->
+          <a href="{{this.imageurl}}" target="_blank" style="text-decoration: none; color: inherit;">
+            {{#if (contains this.imageurl ".pdf")}}
+              <iframe src="{{this.imageurl}}" width="100%" height="200px" style="border: none;"></iframe>
+            {{else}}
+              <img src="{{this.imageurl}}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Resolved Case">
+            {{/if}}
 
-                    </div><!-- /.col-xl-6 -->
+            <div class="card-body">
+              <h5 class="card-title">{{this.title}}</h5>
+              <p class="card-text">{{this.description}}</p>
+            </div>
+          </a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+<style>.scale-up {
+  transform: scale(1.03);
+}
 
-                </div><!-- /.row -->
-            </div><!-- /.container -->
-            <div class="inspiring-one__shapes">
-                <div class="inspiring-one__shape inspiring-one__shape--one"></div><!-- /.inspiring-one__shape__one -->
-                <div class="inspiring-one__shape inspiring-one__shape--two"></div><!-- /.inspiring-one__shape__one -->
-            </div><!-- /.inspiring-one__shape -->
-        </section>
+.card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15) !important;
+}
+</style>
 
 
 

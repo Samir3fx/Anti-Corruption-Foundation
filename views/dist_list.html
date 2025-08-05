@@ -59,7 +59,47 @@
 			</ul>
 		</div>
 	</section>
-
+<div class="container pt-4">
+	
+   <table class="table table-hover table-bordered">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Father/Spouse</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Aadhar</th>
+                        <th>Image</th>
+                        <th>Member Type</th>
+                        <th>Amount</th>
+                        <th>Enrollment No</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {{#each distList}}
+                      <tr>
+                        <td>{{@index}}</td>
+                        <td>{{this.name}}</td>
+                        <td>{{this.father_spouse_name}}</td>
+                        <td>{{this.gender}}</td>
+                        <td>{{this.dob}}</td>
+                        <td>{{this.email}}</td>
+                        <td>{{this.mobile}}</td>
+                        <td>{{this.aadhar}}</td>
+                        <td><a href="{{this.image}}" target="_blank">View</a></td>
+                        <td>{{this.member}}</td>
+                        <td>{{this.amount}}</td>
+                        <td>{{this.enrollmentNo}}</td>
+                       
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  </table>
+</div>
 
 
     <script src="/assets/vendors/jquery/jquery-3.7.0.min.js"></script>
